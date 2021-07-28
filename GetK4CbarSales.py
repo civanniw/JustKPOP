@@ -5,7 +5,6 @@ Created on Sat May 29 16:51:37 2021
 @author: Wangzw
 """
 
-
 import requests
 from bs4 import BeautifulSoup
 import datetime
@@ -13,8 +12,8 @@ import json
 import pandas as pd
 
 
-
 # input id of Cbar's EVENT pages, find from the url.
+'https://www.ktown4u.cn/eventsub?eve_no='+index+'&biz_no=599'
 indexs = ['3132063', '3132101', '3085108', '3095412', '3132677', '3084528', '3085268', '3084517', '3087545', '3084357', '3084889', '2474404']
 
 record = []
@@ -33,6 +32,7 @@ for index in indexs:
     fanc_name = data.find_all(class_='fanc-name')[0].strong.text
     items = data.find_all(class_='item')
     
+    # find item page urls
     for item in items:
         Name = item.find_all('span')[1].text.replace('\r','').replace('\n','').replace('\t','')
         try:
@@ -42,6 +42,8 @@ for index in indexs:
             No1 = item.a['href'].split('&')[1].split('=')[1]
             No2 = item.a['href'].split('&')[2].split('=')[1]
             url = 'https://www.ktown4u.cn/selectFancGoodsTotalSalesList?shopNo=197&goodsNo=' + str(No2)+'&fancGoodsNo=' + str(No1)  
+        
+        # access item pages
         r=requests.get(url, headers=header)
         sales = json.loads(r.content)
         for sale in sales:
