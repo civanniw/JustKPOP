@@ -13,7 +13,7 @@ import pandas as pd
 
 
 # input id of Cbar's EVENT pages, find from the url.
-'https://www.ktown4u.cn/eventsub?eve_no='+index+'&biz_no=599'
+# 'https://www.ktown4u.cn/eventsub?eve_no='+index+'&biz_no=599'
 indexs = ['3132063', '3132101', '3085108', '3095412', '3132677', '3084528', '3085268', '3084517', '3087545', '3084357', '3084889', '2474404']
 
 record = []
